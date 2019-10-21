@@ -69,5 +69,25 @@ namespace OdeToFood.Web.Controllers
             }
             return View();
         }
+
+        [HttpGet]
+        public ActionResult Delete(int id)
+        {
+            var model = db.GetById(id);
+            if (model == null)
+            {
+                return View("NotFound");
+            }
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Delete(int id, FormCollection form)
+        {
+            db.DeleteResturant(id);
+            return RedirectToAction("Index");
+        }
+
     }
 }

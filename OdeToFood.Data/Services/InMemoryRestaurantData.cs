@@ -28,6 +28,15 @@ namespace OdeToFood.Data.Services
 
         }
 
+        public void DeleteResturant(int id)
+        {
+            var existing = GetById(id);
+            if (existing != null)
+            {
+                restaurants.Remove(existing);
+            }
+        }
+
         public IEnumerable<Restaurant> GetAll()
         {
             return restaurants.OrderBy(restaurant => restaurant.Name);
